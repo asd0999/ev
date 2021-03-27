@@ -54,6 +54,7 @@ function App() {
           hours={hours}
           totalLoad={totalLoad}
           loadprofile={loadprofile}
+          evprofile={[...loadprofile]}
         />
       </div>
     </div>
