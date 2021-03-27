@@ -4,6 +4,7 @@ import Hours from "./components/Hours";
 import Miles from "./components/Miles";
 import Rates from "./components/Rates";
 import data from "./lp.csv";
+import Output from "./components/Output";
 
 function App() {
   const [rate, setRate] = useState("");
@@ -39,12 +40,6 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    if (rate && miles && hours && hours !== "none") {
-      console.log("perform calculation");
-    }
-  }, [rate, miles, hours]);
-
   return (
     <div className="container">
       <div className="input">
@@ -52,7 +47,15 @@ function App() {
         <Miles miles={miles} setMiles={setMiles} />
         <Hours hours={hours} setHours={setHours} />
       </div>
-      <div className="output"></div>
+      <div className="output">
+        <Output
+          rate={rate}
+          miles={miles}
+          hours={hours}
+          totalLoad={totalLoad}
+          loadprofile={loadprofile}
+        />
+      </div>
     </div>
   );
 }
