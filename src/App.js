@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import Miles from "./components/Miles";
 import Rates from "./components/Rates";
 
 function App() {
-  const [currentRate, setCurrentRate] = useState("");
+  const [rate, setRate] = useState("");
+  const [miles, setMiles] = useState(0);
 
   return (
-    <div className="App">
-      <Rates currentRate={currentRate} setCurrentRate={setCurrentRate} />
+    <div className="container">
+      <Rates rate={rate} setRate={setRate} />
+      <Miles miles={miles} setMiles={setMiles} />
     </div>
   );
 }
