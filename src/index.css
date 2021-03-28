@@ -186,9 +186,3 @@ hr {
     margin: 0;
     width: 340px;
 }
-
-@media (max-width: 600px) {
-    #root {
-        margin-top: 0px;
-    }
-}
