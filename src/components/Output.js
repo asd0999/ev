@@ -103,15 +103,14 @@ function Output(props) {
   return (
     <div>
       <h1>
-        Result:{" "}
         {rate === "A" && billB2rateA < billB2rateB
-          ? "Good choice!"
+          ? "Result: Good choice!"
           : rate === "A" && billB2rateA > billB2rateB
-          ? "Get TOU rate!"
+          ? "Result: Get TOU rate!"
           : rate === "B" && billB2rateA < billB2rateB
-          ? "Get flat rate!"
+          ? "Result: Get flat rate!"
           : rate === "B" && billB2rateA > billB2rateB
-          ? "Good choice!"
+          ? "Result: Good choice!"
           : "(waiting for input)"}
       </h1>
 
