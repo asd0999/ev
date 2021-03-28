@@ -21,7 +21,7 @@ body {
 }
 
 .input {
-    height: 70%;
+    height: 66%;
     width: 380px;
     display: flex;
     flex-direction: column;
@@ -38,7 +38,7 @@ body {
 }
 
 .output {
-    height: 30%;
+    height: 34%;
     width: 380px;
     display: flex;
     flex-direction: column;
@@ -146,7 +146,8 @@ h4 span {
 
 h1 {
     text-align: center;
-    margin-bottom: 4px;
+    margin-bottom: 24px;
+    margin-top: 30px;
 }
 
 table {
