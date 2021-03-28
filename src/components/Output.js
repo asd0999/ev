@@ -102,9 +102,32 @@ function Output(props) {
 
   return (
     <div>
-      <div>B1: {billB1 && billB1}</div>
-      <div>B2 (rate A): {billB2rateA && billB2rateA}</div>
-      <div>B2 (rate B): {billB2rateB && billB2rateB}</div>
+      <h1>
+        {rate === "A" && billB2rateA < billB2rateB
+          ? "Good choice!"
+          : rate === "A" && billB2rateA > billB2rateB
+          ? "Get TOU rate!"
+          : rate === "B" && billB2rateA < billB2rateB
+          ? "Get flat rate!"
+          : "Good choice!"}
+      </h1>
+
+      <table>
+        <tbody>
+          <tr>
+            <td className="tr-label">Current bill</td>
+            <td>{billB1 && `$ ${billB1}`}</td>
+          </tr>
+          <tr className={billB2rateA < billB2rateB ? "best-choice" : null}>
+            <td className="tr-label">Bill post EV (flat)</td>
+            <td>{billB2rateA && `$ ${billB2rateA}`}</td>
+          </tr>
+          <tr className={billB2rateA < billB2rateB ? null : "best-choice"}>
+            <td className="tr-label">Bill post EV (TOU)</td>
+            <td>{billB2rateB && `$ ${billB2rateB}`}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }

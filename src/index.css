@@ -1,55 +1,84 @@
-.container {
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    width: 100%;
+}
+
+#root {
     margin-top: 30px;
+}
+
+.container {
+    margin: 0px;
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100vh;
+    max-height: 700px;
     justify-content: center;
+    align-items: center;
 }
 
 .input {
-    /* height: 100vh; */
-    height: 700px;
-    width: 400px;
+    height: 70%;
+    width: 380px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
-    background: grey;
-    border-radius: 40px 0px 0px 40px;
+    background: rgb(163, 162, 162);
+    border-radius: 32px 32px 0px 0px;
+    /* border: 8px solid black;
+    border-bottom: none; */
+}
+
+.input>div {
+    margin-top: 20px;
 }
 
 .output {
-    height: 700px;
-    width: 400px;
+    height: 30%;
+    width: 380px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
     background: lightgray;
-    border-radius: 0px 40px 40px 0px;
+    border-radius: 0px 0px 32px 32px;
+    flex: auto;
+    /* border: 8px solid black;
+    border-top: none; */
 }
 
 .rates-container {
     display: flex;
     width: 200px;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .rate-option {
     /* border: 1px solid black; */
     cursor: pointer;
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: rgb(188, 253, 231);
     border-radius: 8px;
+    background-color: rgb(230, 231, 231);
+    color: rgb(177, 175, 175);
+}
+
+.rate-option h2 {
+    text-align: center;
 }
 
 .rate-active {
-    background-color: rgb(67, 250, 189);
+    background-color: rgb(9, 9, 9);
+    border-bottom: 2px solid white;
+    border-right: 1px solid white;
+    color: white;
 }
 
 input[type="range"] {
@@ -57,7 +86,7 @@ input[type="range"] {
     -webkit-appearance: none;
     margin: 10px 0;
     width: 200px;
-    background-color: grey;
+    background-color: rgb(163, 162, 162);
 }
 
 input[type="range"]:focus {
@@ -66,10 +95,10 @@ input[type="range"]:focus {
 
 input[type="range"]::-webkit-slider-runnable-track {
     width: 200px;
-    height: 9px;
+    height: 6px;
     cursor: pointer;
     /* box-shadow: 0px 0px 0px #000000; */
-    background: #edabeb;
+    background: #ebebeb;
     border-radius: 9px;
     /* border: 0px solid #000101; */
 }
@@ -80,7 +109,7 @@ input[type="range"]::-webkit-slider-thumb {
     height: 20px;
     width: 25px;
     border-radius: 3px;
-    background: #ab27ab;
+    background: #0c0c0c;
     cursor: pointer;
     -webkit-appearance: none;
     margin-top: -5.5px;
@@ -88,9 +117,59 @@ input[type="range"]::-webkit-slider-thumb {
 
 .miles-container h4 {
     width: 200px;
-    text-align: center;
+    text-align: left;
+    margin: 30px 0px 0px 0px;
 }
 
 select {
     width: 200px;
+    height: 40px;
+    margin-top: -8px;
+}
+
+h4 span {
+    font-size: 24px;
+}
+
+.hours-label {
+    margin: 0;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 6px;
+}
+
+.tr-label {
+    width: 150px;
+    text-align: left;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 300px;
+}
+
+tr,
+td {
+    border: 1px solid grey;
+}
+
+tr {
+    height: 30px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+.best-choice {
+    background-color: black;
+    color: white;
+    box-shadow: 0px 0px 4px black;
 }

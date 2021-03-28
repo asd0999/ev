@@ -3,6 +3,9 @@ import React from "react";
 function Miles(props) {
   return (
     <div className="miles-container">
+      <h4>
+        MILES / YEAR: <span>{props.miles}</span>
+      </h4>
       <input
         type="range"
         className="miles-slider"
@@ -10,7 +13,6 @@ function Miles(props) {
         max="60000"
         onChange={(e) => props.setMiles(e.target.value)}
       />
-      <h4>The range value is {props.miles}</h4>
     </div>
   );
 }
