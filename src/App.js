@@ -40,9 +40,9 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(loadprofile);
-  }, [loadprofile]);
+  // useEffect(() => {
+  //   console.log(loadprofile);
+  // }, [loadprofile]);
 
   return (
     <div className="container">
