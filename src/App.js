@@ -47,6 +47,9 @@ function App() {
         <Miles miles={miles} setMiles={setMiles} />
         <Hours hours={hours} setHours={setHours} />
       </div>
+      <div className="hr-div">
+        <hr />
+      </div>
       <div className="output">
         <Output
           rate={rate}

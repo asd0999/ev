@@ -102,7 +102,7 @@ function Output(props) {
 
   return (
     <div>
-      <h1>
+      <h4 className="output-label">
         {rate === "A" && billB2rateA < billB2rateB
           ? "Result: Good choice!"
           : rate === "A" && billB2rateA > billB2rateB
@@ -111,25 +111,35 @@ function Output(props) {
           ? "Result: Get flat rate!"
           : rate === "B" && billB2rateA > billB2rateB
           ? "Result: Good choice!"
-          : "(waiting for input)"}
-      </h1>
+          : "Result: (enter details)"}
+      </h4>
 
-      <table>
-        <tbody>
-          <tr>
-            <td className="tr-label">Current bill</td>
-            <td>{billB1 && `$ ${billB1}`}</td>
-          </tr>
-          <tr className={billB2rateA < billB2rateB ? "best-choice" : null}>
-            <td className="tr-label">Bill post EV (flat)</td>
-            <td>{billB2rateA && `$ ${billB2rateA}`}</td>
-          </tr>
-          <tr className={billB2rateA < billB2rateB ? null : "best-choice"}>
-            <td className="tr-label">Bill post EV (TOU)</td>
-            <td>{billB2rateB && `$ ${billB2rateB}`}</td>
-          </tr>
-        </tbody>
-      </table>
+      {billB2rateA ? (
+        <table>
+          <tbody>
+            <tr>
+              <td className="tr-label">Current bill</td>
+              <td>{billB1 && `$ ${billB1}`}</td>
+            </tr>
+            <tr
+              className={
+                billB2rateA && billB2rateA < billB2rateB ? "best-choice" : null
+              }
+            >
+              <td className="tr-label">Bill post EV (flat)</td>
+              <td>{billB2rateA && `$ ${billB2rateA}`}</td>
+            </tr>
+            <tr
+              className={
+                billB2rateA && billB2rateA < billB2rateB ? null : "best-choice"
+              }
+            >
+              <td className="tr-label">Bill post EV (TOU)</td>
+              <td>{billB2rateB && `$ ${billB2rateB}`}</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : null}
     </div>
   );
 }
