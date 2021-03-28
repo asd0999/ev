@@ -61,7 +61,6 @@ function Output(props) {
       start = 9;
       end = 16;
     }
-    console.log(loadprofile[0][0][2]);
     for (let i = 0; i < loadprofile.length; i++) {
       EVloadprofile[i] = [];
       let cur = loadprofile[i];
@@ -73,9 +72,6 @@ function Output(props) {
         }
       }
     }
-
-    // console.log(EVloadprofile.length);
-    console.log(EVloadprofile[0][0] * 0.08);
 
     // iterate over EV load profile to calculate new bill B2
     let b2 = 0;
@@ -89,7 +85,6 @@ function Output(props) {
         }
       }
     }
-    console.log(b2);
     b2 = b2.toFixed(2);
     setBillB2rateB(b2);
     console.log(`b2 for rate B: ${billB2rateB}`);
@@ -98,13 +93,10 @@ function Output(props) {
 
   function calcEVtotalLoad() {
     let energyRequired = miles * 0.3;
-    // console.log(energyRequired);
     let energyRequiredDaily = energyRequired / 365;
     let chargeIn1Hour = 7.2; //kwh
     setHoursOfChargingDaily(Math.ceil(energyRequiredDaily / chargeIn1Hour));
-    // console.log(hoursOfChargingDaily);
     let EVtotalLoad = totalLoad + energyRequired;
-    // console.log(EVtotalLoad);
     return EVtotalLoad;
   }
 

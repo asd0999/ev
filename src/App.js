@@ -40,10 +40,6 @@ function App() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   console.log(loadprofile);
-  // }, [loadprofile]);
-
   return (
     <div className="container">
       <div className="input">
