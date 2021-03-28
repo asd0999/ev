@@ -1,77 +1,89 @@
 import React, { useState, useEffect } from "react";
 
 function Output(props) {
-  const { rate, miles, hours, loadprofile, totalLoad, evprofile } = props;
-  const [output, setOutput] = useState("hello");
-  //   let evprofile = [...loadprofile];
+  const { rate, miles, hours, loadprofile, totalLoad } = props;
+  //   const [output, setOutput] = useState("hello");
+  const [billB1, setBillB1] = useState(0);
+  const [billB2rateA, setBillB2rateA] = useState(0);
+  const [billB2rateB, setBillB2rateB] = useState(0);
+  const [hoursOfChargingDaily, setHoursOfChargingDaily] = useState(0);
 
   useEffect(() => {
-    let b1 = 0;
-    let b2_a = 0;
-    let b2_b = 0;
-    let hoursOfCharging = 0;
+    // we have all three inputs
     if (rate && miles && hours && hours !== "none") {
-      // we have all three inputs
-      console.log(loadprofile);
+    }
+  }, [rate, miles, hours]);
 
-      // rate calculations
-      if (rate === "A") {
-        b1 = (totalLoad * 0.15).toFixed(2);
-        setOutput(`b1 for rate A: ${b1}`);
-      } else if (rate === "B") {
-        for (let i = 0; i < loadprofile.length; i++) {
-          let cur = loadprofile[i];
-          for (let j = 0; j < cur.length; j++) {
-            if (j >= 11 && j < 17) {
-              b1 += cur[j][2] * 0.2;
-            } else {
-              b1 += cur[j][2] * 0.08;
-            }
+  function calcEVloadprofile() {
+    let energyRequired = miles * 0.3;
+    console.log(energyRequired);
+    setHoursOfChargingDaily(Math.ceil(energyRequired / (365 * 7.2)));
+    console.log(hoursOfChargingDaily);
+    //calc new Ev load profile
+  }
+
+  function calcEVtotalLoad() {
+    return totalLoad + hoursOfChargingDaily * 365;
+  }
+
+  function calculateB1() {
+    if (rate === "A") {
+      setBillB1((totalLoad * 0.15).toFixed(2));
+      console.log(`b1 for rate A: ${billB1}`);
+      // setOutput(`b1 for rate A: ${b1}`);
+    } else if (rate === "B") {
+      let b1 = 0;
+      for (let i = 0; i < loadprofile.length; i++) {
+        let cur = loadprofile[i];
+        for (let j = 0; j < cur.length; j++) {
+          if (j >= 11 && j < 17) {
+            b1 += cur[j][2] * 0.2;
+          } else {
+            b1 += cur[j][2] * 0.08;
           }
         }
-        b1 = b1.toFixed(2);
-        setOutput(`b1 for rate B: ${b1}`);
       }
-
-      // miles calculations
-      let energyRequired = miles * 0.3;
-      console.log(energyRequired);
-      hoursOfCharging = Math.ceil(energyRequired / (365 * 7.2));
-      console.log(hoursOfCharging);
+      b1 = b1.toFixed(2);
+      setBillB1(b1);
+      console.log(`b1 for rate B: ${b1}`);
+      // setOutput(`b1 for rate B: ${b1}`);
     }
+  }
 
+  function calculateB2rateA() {
+    let EVtotalLoad = calcEVtotalLoad();
+    setBillB2rateA((EVtotalLoad * 0.15).toFixed(2));
+    console.log(`b2 for rate A: ${billB2rateA}`);
+    //   setOutput(`b2 for rate A: ${b2_a}`);
+  }
+
+  function calculateB2rateB() {
     // calculate new EV load profile
-    for (let i = 0; i < evprofile.length; i++) {
-      let cur = evprofile[i];
+    let EVloadprofile = calcEVloadprofile();
+    for (let i = 0; i < EVloadprofile.length; i++) {
+      let cur = EVloadprofile[i];
       let start = null;
       let end = null;
-      let carry = null;
       if (hours === "hours2") {
         start = 17;
-        end = Math.min(start + hoursOfCharging, cur.length);
-        // let carry = null;
-        // if (start + hoursOfCharging > cur.length) {
-        //   carry = start + hoursOfCharging - cur.length;
-        // }
+        end = 24;
       } else if (hours === "hours1") {
         start = 9;
         end = 16;
       }
-      for (let j = 0; j < end; j++) {
-        // if (carry) {
-        //   cur[j][2] += 7.2;
-        //   carry--;
-        // } else
-        if (j >= start && j < end) {
-          cur[j][2] += 7.2;
-        }
+      for (let j = start; j < end; j++) {
+        cur[j][2] += 7.2;
       }
     }
-    console.log(loadprofile[0]);
-    console.log(evprofile[0]);
-  }, [rate, miles, hours]);
+  }
 
-  return <div>{output}</div>;
+  return (
+    <div>
+      <div>{billB1 && billB1}</div>
+      <div>{billB2rateA && billB2rateA}</div>
+      <div>{billB2rateB && billB2rateB}</div>
+    </div>
+  );
 }
 
 export default Output;

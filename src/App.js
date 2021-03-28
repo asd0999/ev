@@ -35,10 +35,14 @@ function App() {
       }
 
       //once all data is parsed, save it to state
-      setLoadprofile(parsedData);
+      setLoadprofile([...parsedData]);
       setTotalLoad(totalconsumption);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(loadprofile);
+  }, [loadprofile]);
 
   return (
     <div className="container">
@@ -54,7 +58,6 @@ function App() {
           hours={hours}
           totalLoad={totalLoad}
           loadprofile={loadprofile}
-          evprofile={[...loadprofile]}
         />
       </div>
     </div>
