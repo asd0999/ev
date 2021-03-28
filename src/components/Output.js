@@ -139,7 +139,9 @@ function Output(props) {
             </tr>
           </tbody>
         </table>
-      ) : null}
+      ) : (
+        <div className="table-placeholder"></div>
+      )}
     </div>
   );
 }

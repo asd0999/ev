@@ -188,3 +188,7 @@ hr {
     margin: 0;
     width: 600px;
 }
+
+.table-placeholder {
+    height: 118px;
+}
