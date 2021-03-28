@@ -13,9 +13,12 @@ function Output(props) {
     if (rate && miles && hours && hours !== "none") {
       calculateB1();
       calculateB2rateA();
-      calculateB2rateB();
     }
   }, [rate, miles, hours]);
+
+  useEffect(() => {
+    calculateB2rateB();
+  }, [billB2rateA]);
 
   function calculateB1() {
     if (rate === "A") {
@@ -103,13 +106,13 @@ function Output(props) {
   return (
     <div>
       <h4 className="output-label">
-        {rate === "A" && billB2rateA < billB2rateB
+        {rate === "A" && billB2rateA <= billB2rateB
           ? "Result: Good choice!"
           : rate === "A" && billB2rateA > billB2rateB
           ? "Result: Get TOU rate!"
           : rate === "B" && billB2rateA < billB2rateB
           ? "Result: Get flat rate!"
-          : rate === "B" && billB2rateA > billB2rateB
+          : rate === "B" && billB2rateA >= billB2rateB
           ? "Result: Good choice!"
           : "Result: (enter details)"}
       </h4>
@@ -123,7 +126,9 @@ function Output(props) {
             </tr>
             <tr
               className={
-                billB2rateA && billB2rateA < billB2rateB ? "best-choice" : null
+                billB2rateA && billB2rateB && billB2rateA <= billB2rateB
+                  ? "best-choice"
+                  : null
               }
             >
               <td className="tr-label">Bill post EV (flat)</td>
@@ -131,7 +136,9 @@ function Output(props) {
             </tr>
             <tr
               className={
-                billB2rateA && billB2rateA < billB2rateB ? null : "best-choice"
+                billB2rateA && billB2rateB && billB2rateA <= billB2rateB
+                  ? null
+                  : "best-choice"
               }
             >
               <td className="tr-label">Bill post EV (TOU)</td>

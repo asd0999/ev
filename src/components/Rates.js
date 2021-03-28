@@ -3,8 +3,22 @@ import React from "react";
 function Rates(props) {
   return (
     <div>
-      <h4>CURRENT RATE:</h4>
-      <div className="rates-container">
+      <h4>YOUR CURRENT ELECTRIC RATE:</h4>
+      <select
+        name="rate"
+        id="rate"
+        value={props.rate}
+        onChange={(e) => props.setRate(e.target.value)}
+      >
+        <option value="none">select one</option>
+        <option value="hours1">
+          $0.15/kWh flat rate (irresecptive of time of use)
+        </option>
+        <option value="hours2">
+          $0.20/kWh 12pm-6pm, $0.08/kWh all other times
+        </option>
+      </select>
+      {/* <div className="rates-container">
         <div
           className={`rate-option ${props.rate === "A" ? "rate-active" : null}`}
           onClick={(e) => props.setRate("A")}
@@ -17,7 +31,7 @@ function Rates(props) {
         >
           <h2>TOU</h2>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

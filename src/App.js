@@ -5,6 +5,7 @@ import Miles from "./components/Miles";
 import Rates from "./components/Rates";
 import data from "./lp.csv";
 import Output from "./components/Output";
+import Header from "./components/Header";
 
 function App() {
   const [rate, setRate] = useState("");
@@ -41,25 +42,37 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="input">
-        <Rates rate={rate} setRate={setRate} />
-        <Miles miles={miles} setMiles={setMiles} />
-        <Hours hours={hours} setHours={setHours} />
+    <>
+      <Header />
+      <div className="container">
+        <div className="input">
+          <div className="intro">
+            <p>
+              Hi! This tool is built to help you estimate and analyze your
+              electric costs post EV and decide which electric rate would be
+              bring you higher savings!
+            </p>
+            <p>
+              The tool considers your current load profile and the additional
+              electric consumption of your EV. To see the result, please provide
+              the following 3 inputs:
+            </p>
+          </div>
+          <Rates rate={rate} setRate={setRate} />
+          <Miles miles={miles} setMiles={setMiles} />
+          <Hours hours={hours} setHours={setHours} />
+        </div>
+        <div className="output">
+          <Output
+            rate={rate}
+            miles={miles}
+            hours={hours}
+            totalLoad={totalLoad}
+            loadprofile={loadprofile}
+          />
+        </div>
       </div>
-      <div className="hr-div">
-        <hr />
-      </div>
-      <div className="output">
-        <Output
-          rate={rate}
-          miles={miles}
-          hours={hours}
-          totalLoad={totalLoad}
-          loadprofile={loadprofile}
-        />
-      </div>
-    </div>
+    </>
   );
 }
 
