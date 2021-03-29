@@ -162,7 +162,7 @@ function Output(props) {
       ) : (
         <div className="table-placeholder"></div>
       )}
-      {hours && billB2rateB && (
+      {hours && miles && rate && billB2rateB && (
         <>
           <Chart
             billB1={billB1}
