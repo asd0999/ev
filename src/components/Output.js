@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Chart from "./Chart.js";
 
 function Output(props) {
   const { rate, miles, hours, loadprofile, totalLoad } = props;
@@ -104,7 +105,7 @@ function Output(props) {
   }
 
   return (
-    <div>
+    <div className="output-container">
       <h4 className="output-label">
         {rate === "A" && billB2rateA <= billB2rateB
           ? "Result: Good choice!"
@@ -116,7 +117,6 @@ function Output(props) {
           ? "Result: Good choice!"
           : "Result: (enter details)"}
       </h4>
-
       {billB2rateA ? (
         <table>
           <tbody>
@@ -131,7 +131,7 @@ function Output(props) {
                   : null
               }
             >
-              <td className="tr-label">Bill post EV (flat)</td>
+              <td className="tr-label">Post EV - flat rate</td>
               <td>{billB2rateA && `$ ${billB2rateA}`}</td>
             </tr>
             <tr
@@ -141,13 +141,20 @@ function Output(props) {
                   : "best-choice"
               }
             >
-              <td className="tr-label">Bill post EV (TOU)</td>
+              <td className="tr-label">Post EV - ToU rate</td>
               <td>{billB2rateB && `$ ${billB2rateB}`}</td>
             </tr>
           </tbody>
         </table>
       ) : (
         <div className="table-placeholder"></div>
+      )}
+      {hours && billB2rateB && (
+        <Chart
+          billB1={billB1}
+          billB2rateA={billB2rateA}
+          billB2rateB={billB2rateB}
+        />
       )}
     </div>
   );

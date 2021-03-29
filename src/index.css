@@ -56,7 +56,13 @@ body {
     align-items: center;
     background: lightgray;
     /* border-radius: 0px 0px 32px 32px; */
-    border-left: 1px solid grey;
+    /* border-left: 1px solid grey; */
+}
+
+.output-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .rates-container {
@@ -157,14 +163,14 @@ h2 {
 }
 
 .output-label {
-    width: 300px;
+    width: 350px;
     text-transform: uppercase;
     margin-top: 60px;
 }
 
 table {
     border-collapse: collapse;
-    width: 300px;
+    width: 350px;
 }
 
 tr,
@@ -182,9 +188,9 @@ td {
 }
 
 .best-choice {
-    background-color: black;
-    color: white;
-    box-shadow: 0px 0px 4px black;
+    background-color: #faba45;
+    color: black;
+    /* box-shadow: 0px 0px 4px black; */
 }
 
 .hr-div {
@@ -202,4 +208,12 @@ hr {
 
 .table-placeholder {
     height: 118px;
+}
+
+.VictoryContainer>svg>g>path {
+    fill: green;
+}
+
+.current-bill-row {
+    margin-bottom: 10px;
 }
