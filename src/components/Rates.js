@@ -11,10 +11,8 @@ function Rates(props) {
         onChange={(e) => props.setRate(e.target.value)}
       >
         <option value="none">select one</option>
-        <option value="A">
-          $0.15/kWh flat rate (irresecptive of time of use)
-        </option>
-        <option value="B">$0.20/kWh 12pm-6pm, $0.08/kWh all other times</option>
+        <option value="A">$0.15/kWh flat rate</option>
+        <option value="B">$0.20/kWh 12pm-6pm, $0.08/kWh non-peak</option>
       </select>
     </div>
   );
