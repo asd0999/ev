@@ -92,7 +92,7 @@ function Output(props) {
   function calcEVtotalLoad() {
     let energyRequired = miles * 0.3;
     let energyRequiredDaily = energyRequired / 365;
-    let chargeIn1Hour = 7.2; //kwh
+    let chargeIn1Hour = 6.2; //kwh
     setHoursOfChargingDaily(energyRequiredDaily / chargeIn1Hour);
     let EVtotalLoad = totalLoad + energyRequired;
     return EVtotalLoad;
@@ -101,18 +101,34 @@ function Output(props) {
   return (
     <div className="output-container">
       <div className="output-label">
-        <h4>
-          Recommendation: <p />
-          {rate === "A" && billB2rateA <= billB2rateB
-            ? "Your current plan is the best option!"
-            : rate === "A" && billB2rateA > billB2rateB
-            ? "You can save by switching to Time - Of - use based rate!"
-            : rate === "B" && billB2rateA < billB2rateB
-            ? "You can save by switching to flat rate!"
-            : rate === "B" && billB2rateA >= billB2rateB
-            ? "You current plan is the best option!"
-            : "(enter details)"}
-        </h4>
+        <h4 style={{ marginBottom: "-16px" }}>Recommendation: </h4>
+        {miles && hours && rate === "A" && billB2rateA <= billB2rateB ? (
+          <h4>
+            You will save{" "}
+            <span>${Math.floor(Math.abs(billB2rateA - billB2rateB))}</span> by
+            staying on your current plan!{" "}
+          </h4>
+        ) : rate === "A" && billB2rateA > billB2rateB ? (
+          <h4>
+            You can save{" "}
+            <span>${Math.floor(Math.abs(billB2rateA - billB2rateB))}</span> by
+            switching to Time - Of - use based rate!
+          </h4>
+        ) : rate === "B" && billB2rateA < billB2rateB ? (
+          <h4>
+            You can save{" "}
+            <span>${Math.floor(Math.abs(billB2rateA - billB2rateB))}</span> by
+            switching to flat rate!
+          </h4>
+        ) : rate === "B" && billB2rateA >= billB2rateB ? (
+          <h4>
+            You will save{" "}
+            <span>${Math.floor(Math.abs(billB2rateA - billB2rateB))}</span> by
+            staying on your current plan!{" "}
+          </h4>
+        ) : (
+          <h4>(awaiting input)</h4>
+        )}
       </div>
       {billB2rateA ? (
         <table>
@@ -123,7 +139,7 @@ function Output(props) {
             </tr>
             <tr
               className={
-                billB2rateA && billB2rateB && billB2rateA <= billB2rateB
+                billB2rateA && billB2rateB && billB2rateA < billB2rateB
                   ? "best-choice"
                   : null
               }
@@ -133,9 +149,9 @@ function Output(props) {
             </tr>
             <tr
               className={
-                billB2rateA && billB2rateB && billB2rateA <= billB2rateB
-                  ? null
-                  : "best-choice"
+                billB2rateA && billB2rateB && billB2rateB < billB2rateA
+                  ? "best-choice"
+                  : null
               }
             >
               <td className="tr-label">Post EV - ToU rate</td>

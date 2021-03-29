@@ -235,3 +235,8 @@ select:focus {
     margin-right: 10px;
     background-color: #faba45;
 }
+
+.output-label span {
+    color: green;
+    font-size: 28px;
+}

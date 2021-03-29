@@ -10,7 +10,7 @@ function Chart(props) {
     { bill: "EV - ToU rate", cost: parseInt(billB2rateB) },
   ];
   return (
-    <VictoryChart domainPadding={60}>
+    <VictoryChart domainPadding={60} domain={{ y: [0, 3500] }}>
       <VictoryBar
         data={data}
         x="bill"

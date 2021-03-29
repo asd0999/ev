@@ -9,7 +9,7 @@ function Miles(props) {
       <input
         type="range"
         className="miles-slider"
-        min="0"
+        min="1000"
         max="60000"
         onClick={(e) => props.setMiles(e.target.value)}
         onChange={(e) => props.setMiles(e.target.value)}
