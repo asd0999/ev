@@ -7,8 +7,8 @@ function Chart(props) {
 
   const data = [
     { bill: "Current bill", cost: parseInt(billB1) },
-    { bill: "Post EV - flat rate", cost: parseInt(billB2rateA) },
-    { bill: "Post EV - ToU rate", cost: parseInt(billB2rateB) },
+    { bill: "EV - Flat rate", cost: parseInt(billB2rateA) },
+    { bill: "EV - ToU rate", cost: parseInt(billB2rateB) },
   ];
   return (
     <VictoryChart domainPadding={60}>
@@ -22,8 +22,8 @@ function Chart(props) {
               datum.cost === Math.min(data[1].cost, data[2].cost)
                 ? "#faba45"
                 : datum.bill === "Current bill"
-                ? "grey"
-                : "#000000",
+                ? "#d2d2d2"
+                : "#a1a1a1",
           },
         }}
       />

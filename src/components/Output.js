@@ -106,21 +106,24 @@ function Output(props) {
 
   return (
     <div className="output-container">
-      <h4 className="output-label">
-        {rate === "A" && billB2rateA <= billB2rateB
-          ? "Result: Good choice!"
-          : rate === "A" && billB2rateA > billB2rateB
-          ? "Result: Get TOU rate!"
-          : rate === "B" && billB2rateA < billB2rateB
-          ? "Result: Get flat rate!"
-          : rate === "B" && billB2rateA >= billB2rateB
-          ? "Result: Good choice!"
-          : "Result: (enter details)"}
-      </h4>
+      <div className="output-label">
+        <h4>
+          Recommendation: <p />
+          {rate === "A" && billB2rateA <= billB2rateB
+            ? "Your current plan is the best option!"
+            : rate === "A" && billB2rateA > billB2rateB
+            ? "You can nsave by switching to Time - Of - use based rate!"
+            : rate === "B" && billB2rateA < billB2rateB
+            ? "You can save by switching to flat rate!"
+            : rate === "B" && billB2rateA >= billB2rateB
+            ? "You current plan is the best option!"
+            : "(enter details)"}
+        </h4>
+      </div>
       {billB2rateA ? (
         <table>
           <tbody>
-            <tr>
+            <tr className="current-bill-row">
               <td className="tr-label">Current bill</td>
               <td>{billB1 && `$ ${billB1}`}</td>
             </tr>
@@ -131,7 +134,7 @@ function Output(props) {
                   : null
               }
             >
-              <td className="tr-label">Post EV - flat rate</td>
+              <td className="tr-label">Post EV - Flat rate</td>
               <td>{billB2rateA && `$ ${billB2rateA}`}</td>
             </tr>
             <tr
@@ -150,11 +153,17 @@ function Output(props) {
         <div className="table-placeholder"></div>
       )}
       {hours && billB2rateB && (
-        <Chart
-          billB1={billB1}
-          billB2rateA={billB2rateA}
-          billB2rateB={billB2rateB}
-        />
+        <>
+          <Chart
+            billB1={billB1}
+            billB2rateA={billB2rateA}
+            billB2rateB={billB2rateB}
+          />
+          <div className="legend">
+            <div className="legend-color"></div> Electric rate providing the
+            maximum savings!
+          </div>
+        </>
       )}
     </div>
   );

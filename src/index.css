@@ -1,3 +1,7 @@
+:root {
+    --bg: #f2f2f2;
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 body {
     margin: 0px;
@@ -36,7 +40,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: lightgray;
+    background: var(--bg);
     /* border-radius: 32px 32px 0px 0px; */
 }
 
@@ -54,7 +58,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: lightgray;
+    background: var(--bg);
     /* border-radius: 0px 0px 32px 32px; */
     /* border-left: 1px solid grey; */
 }
@@ -101,8 +105,7 @@ input[type="range"] {
     -webkit-appearance: none;
     margin: 10px 0;
     width: 300px;
-    /* background-color: rgb(163, 162, 162); */
-    background: lightgray;
+    background: var(--bg);
 }
 
 input[type="range"]:focus {
@@ -111,20 +114,22 @@ input[type="range"]:focus {
 
 input[type="range"]::-webkit-slider-runnable-track {
     width: 200px;
-    height: 6px;
+    height: 4px;
     cursor: pointer;
-    background: #ffffff;
+    background: grey;
     border-radius: 9px;
 }
 
 input[type="range"]::-webkit-slider-thumb {
     height: 20px;
     width: 25px;
-    border-radius: 3px;
-    background: #0c0c0c;
+    /* border-radius: 3px; */
+    border: 1px solid grey;
+    background: #faba45;
+    border-radius: 20%;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -5.5px;
+    margin-top: -6.5px;
 }
 
 .miles-container h4 {
@@ -164,13 +169,16 @@ h2 {
 
 .output-label {
     width: 350px;
+    height: 75px;
     text-transform: uppercase;
-    margin-top: 60px;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 table {
     border-collapse: collapse;
     width: 350px;
+    /* margin-bottom: 40px; */
 }
 
 tr,
@@ -216,4 +224,23 @@ hr {
 
 .current-bill-row {
     margin-bottom: 10px;
+}
+
+select:focus {
+    outline-color: #faba45;
+}
+
+.legend {
+    font-size: 12px;
+    display: flex;
+    align-self: flex-start;
+    margin-left: 48px;
+}
+
+.legend-color {
+    border: 1px solid black;
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+    background-color: #faba45;
 }
