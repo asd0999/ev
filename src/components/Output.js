@@ -3,7 +3,6 @@ import Chart from "./Chart.js";
 
 function Output(props) {
   const { rate, miles, hours, loadprofile, totalLoad } = props;
-  //   const [output, setOutput] = useState("hello");
   const [billB1, setBillB1] = useState(0);
   const [billB2rateA, setBillB2rateA] = useState(0);
   const [billB2rateB, setBillB2rateB] = useState(0);
@@ -11,7 +10,7 @@ function Output(props) {
 
   useEffect(() => {
     // we have all three inputs
-    if (rate && miles && hours && hours !== "none") {
+    if (rate && miles && (hours === "hours1" || hours === "hours2")) {
       calculateB1();
       calculateB2rateA();
     }
@@ -19,13 +18,15 @@ function Output(props) {
 
   useEffect(() => {
     calculateB2rateB();
-  }, [billB2rateA]);
+  }, [hoursOfChargingDaily, hours]);
+
+  useEffect(() => {
+    calcEVtotalLoad();
+  }, [miles]);
 
   function calculateB1() {
     if (rate === "A") {
       setBillB1((totalLoad * 0.15).toFixed(2));
-      console.log(`b1 for rate A: ${billB1}`);
-      // setOutput(`b1 for rate A: ${b1}`);
     } else if (rate === "B") {
       let b1 = 0;
       for (let i = 0; i < loadprofile.length; i++) {
@@ -40,22 +41,17 @@ function Output(props) {
       }
       b1 = b1.toFixed(2);
       setBillB1(b1);
-      //   console.log(`b1 for rate B: ${billB1}`);
-      // setOutput(`b1 for rate B: ${b1}`);
     }
   }
 
   function calculateB2rateA() {
     let EVtotalLoad = calcEVtotalLoad();
     setBillB2rateA((EVtotalLoad * 0.15).toFixed(2));
-    // console.log(`b2 for rate A: ${billB2rateA}`);
-    //   setOutput(`b2 for rate A: ${b2_a}`);
   }
 
   function calculateB2rateB() {
     // calc new EV load profile
     let EVloadprofile = [];
-    // console.log(EVloadprofile);
     let start = null;
     let end = null;
     if (hours === "hours2") {
@@ -91,15 +87,13 @@ function Output(props) {
     }
     b2 = b2.toFixed(2);
     setBillB2rateB(b2);
-    console.log(`b2 for rate B: ${billB2rateB}`);
-    // setOutput(`b2 for rate B: ${b2}`);
   }
 
   function calcEVtotalLoad() {
     let energyRequired = miles * 0.3;
     let energyRequiredDaily = energyRequired / 365;
     let chargeIn1Hour = 7.2; //kwh
-    setHoursOfChargingDaily(Math.ceil(energyRequiredDaily / chargeIn1Hour));
+    setHoursOfChargingDaily(energyRequiredDaily / chargeIn1Hour);
     let EVtotalLoad = totalLoad + energyRequired;
     return EVtotalLoad;
   }
@@ -112,7 +106,7 @@ function Output(props) {
           {rate === "A" && billB2rateA <= billB2rateB
             ? "Your current plan is the best option!"
             : rate === "A" && billB2rateA > billB2rateB
-            ? "You can nsave by switching to Time - Of - use based rate!"
+            ? "You can save by switching to Time - Of - use based rate!"
             : rate === "B" && billB2rateA < billB2rateB
             ? "You can save by switching to flat rate!"
             : rate === "B" && billB2rateA >= billB2rateB

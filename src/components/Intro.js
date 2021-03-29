@@ -10,8 +10,8 @@ function Intro() {
       </p>
       <p>
         The tool considers your current load profile and the additional electric
-        consumption of your EV. To see the result, please provide the following
-        3 inputs:
+        consumption of your EV. To see the recommendation, please provide the
+        following details:
       </p>
     </div>
   );

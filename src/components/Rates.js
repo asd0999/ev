@@ -16,20 +16,6 @@ function Rates(props) {
         </option>
         <option value="B">$0.20/kWh 12pm-6pm, $0.08/kWh all other times</option>
       </select>
-      {/* <div className="rates-container">
-        <div
-          className={`rate-option ${props.rate === "A" ? "rate-active" : null}`}
-          onClick={(e) => props.setRate("A")}
-        >
-          <h2>FLAT</h2>
-        </div>
-        <div
-          className={`rate-option ${props.rate === "B" ? "rate-active" : null}`}
-          onClick={(e) => props.setRate("B")}
-        >
-          <h2>TOU</h2>
-        </div>
-      </div> */}
     </div>
   );
 }

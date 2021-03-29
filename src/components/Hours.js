@@ -14,13 +14,6 @@ function Hours(props) {
         <option value="hours1">10am - 6pm (peak)</option>
         <option value="hours2">6pm - 10am (non-peak)</option>
       </select>
-      {/* <h2 className="hours-label">
-        {props.hours === "hours1"
-          ? "AM - PM"
-          : props.hours === "hours2"
-          ? "PM - AM"
-          : ". . ."}
-      </h2> */}
     </div>
   );
 }

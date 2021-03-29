@@ -6,6 +6,7 @@ import Rates from "./components/Rates";
 import data from "./lp.csv";
 import Output from "./components/Output";
 import Header from "./components/Header";
+import Intro from "./components/Intro";
 
 function App() {
   const [rate, setRate] = useState("");
@@ -46,18 +47,7 @@ function App() {
       <Header />
       <div className="container">
         <div className="input">
-          <div className="intro">
-            <p>
-              Hi! This tool is built to help you estimate and analyze your
-              electric costs post EV and decide which electric rate would be
-              bring you higher savings!
-            </p>
-            <p>
-              The tool considers your current load profile and the additional
-              electric consumption of your EV. To see the result, please provide
-              the following 3 inputs:
-            </p>
-          </div>
+          <Intro />
           <Rates rate={rate} setRate={setRate} />
           <Miles miles={miles} setMiles={setMiles} />
           <Hours hours={hours} setHours={setHours} />
